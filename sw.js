@@ -8,6 +8,7 @@ const filesToCache = [
 // install
 self.addEventListener('install', event => {
     console.log('installing…');
+	navigator.serviceWorker.getRegistrations().then(function(registrations) { for(let registration of registrations) { registration.unregister() } })
     event.waitUntil(
 		caches.open('static-v1').then(cache => {
 			return cache.addAll(filesToCache);
