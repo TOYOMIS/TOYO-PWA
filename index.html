@@ -14,23 +14,15 @@
 		<link rel="manifest" href="manifest.json">
 		<link rel="icon" href="images/icons.json">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<script>
-			if ('serviceWorker' in navigator) { 
-			  window.addEventListener('load', function() {   
-				navigator.serviceWorker.getRegistrations().then(function(registrations) { for(let registration of registrations) { registration.unregister() } })
-				navigator.serviceWorker.register('/sw.js').then(
-				  function(registration) { 
-					// Registration was successful
-					console.log('ServiceWorker registration successful with scope: ', registration.scope); }, 
-				  function(err) { 
-					// registration failed :( 
-					console.log('ServiceWorker registration failed: ', err); 
-				  }); 
-			  });
-			}
-		</script>
 	</head>
 	<body class="is-preload">
+		<script>
+			if ('serviceWorker' in navigator) {
+			    navigator.serviceWorker.register('/sw.js')
+			    .then(reg => console.log('完成 SW 設定!', reg))
+			    .catch(err => console.log('Error!', err));
+			}
+		</script>
 		<!-- Wrapper -->
 			<div id="wrapper">
 
